@@ -1,0 +1,8 @@
+
+
+
+MOV AX, 1234H
+MOV BX, 3456H
+
+ADD BX, AX   
+ADD BH, 24H

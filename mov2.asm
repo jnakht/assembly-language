@@ -1,0 +1,10 @@
+
+
+
+
+MOV AX, 1234H
+MOV BL, 34H
+
+MOV CX, AX
+MOV DH, BL
+HLT

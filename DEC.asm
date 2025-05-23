@@ -1,0 +1,6 @@
+
+
+
+
+MOV AL, 23H
+DEC AL

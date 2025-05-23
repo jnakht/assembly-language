@@ -1,0 +1,14 @@
+
+
+MOV DH, 0CH
+MOV CH, 08H
+
+SUB DH, CH
+
+
+
+
+
+MOV AX, 4578H
+SUB AX, 456AH
+
