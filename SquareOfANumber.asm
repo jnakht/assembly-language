@@ -1,0 +1,10 @@
+
+
+;MOV AL, 05H
+;MUL AL  
+
+
+
+MOV AL, 05H
+MOV BL, AL
+MUL BL

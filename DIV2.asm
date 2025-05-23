@@ -1,0 +1,10 @@
+
+
+
+
+
+
+MOV AX, 0005H
+MOV BX, 0008H
+
+DIV BX

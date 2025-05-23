@@ -1,0 +1,14 @@
+
+
+
+MOV AL, 00H
+TEST AL, AL
+JZ IF_ZERO  
+HLT
+
+
+
+
+IF_ZERO:
+MOV BL, AL
+HLT

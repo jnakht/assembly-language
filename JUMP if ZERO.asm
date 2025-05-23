@@ -1,0 +1,16 @@
+
+
+
+
+
+
+MOV AL, 07H
+AND AL, 01H     
+
+JZ EVEN   
+
+
+EVEN: 
+MOV BL, AL
+MOV CL, BL
+HLT

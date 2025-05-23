@@ -1,0 +1,5 @@
+
+
+
+MOV AX, 0005H
+MOV AX, 0H

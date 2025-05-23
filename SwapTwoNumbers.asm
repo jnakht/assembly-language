@@ -1,0 +1,12 @@
+
+
+
+MOV AL, 05H
+MOV BL, 08H
+
+;MOV CL, AL
+;MOV AL, BL
+;MOV BL, CL   
+
+
+XCHG AL, BL

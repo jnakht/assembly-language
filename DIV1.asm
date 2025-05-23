@@ -1,0 +1,8 @@
+
+
+
+
+MOV AL, 08H
+MOV BL, 02H
+
+DIV BL
