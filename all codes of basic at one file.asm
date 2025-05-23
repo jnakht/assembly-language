@@ -89,26 +89,26 @@
                  
                  
     ;printing a message
-    .MODEL SMALL
-    .STACK 100H
+   ; .MODEL SMALL
+   ; .STACK 100H
     
-    .DATA
-        msg1 DB "PLEASE ENTER A NUMBER: $"  
-        msg2 DB 10, 13, "YOUR ENTERED VALUE IS: $"
+   ; .DATA
+       ; msg1 DB "PLEASE ENTER A NUMBER: $"  
+       ; msg2 DB 10, 13, "YOUR ENTERED VALUE IS: $"
     
-    .CODE                             
-        MAIN PROC
-            MOV AX, @DATA
-            MOV DS, AX
+   ; .CODE                             
+       ; MAIN PROC
+           ; MOV AX, @DATA
+           ; MOV DS, AX
             
-            LEA DX, msg1
-            MOV AH, 09H
-            INT 21H
+           ; LEA DX, msg1
+           ; MOV AH, 09H
+           ; INT 21H
             
-            MOV AH, 1
-            INT 21H
+          ;  MOV AH, 1
+          ;  INT 21H
             
-            MOV BL, AL   
+           ; MOV BL, AL   
             
             
             ;CARRIAGE RETURN
@@ -123,15 +123,234 @@
                       
             
             ;PRINTING WITH A OUTPUT MESSAGE
-            LEA DX, msg2
-            MOV AH, 09H
-            INT 21H
+          ;  LEA DX, msg2
+          ;  MOV AH, 09H
+          ;  INT 21H
             
             
-            MOV DL, BL          
-            MOV AH, 2
-            INT 21H
-            
+          ;  MOV DL, BL          
+          ;  MOV AH, 2
+          ;  INT 21H
+                       
+                       
+                       
+                       
+
+
+           ;add two numbers
+;.MODEL SMALL
+;.STACK 100H
+
+;.DATA
+   ; MSG1 DB "ENTER THE FIRST NUMBER: $"
+   ; MSG2 DB 10, 13, "ENTER THE SECOND NUMBER: $"
+   ; MSG3 DB 10, 13, "THE SUM IS: $"
+
+;.CODE 
+;MAIN PROC
+   ; MOV AX, @DATA
+   ; MOV DS, AX
+    
+    ;INPUT MESSAGE 1
+   ; LEA DX, MSG1
+   ; MOV AH, 09H
+   ; INT 21H
+    
+    ;INPUT
+   ; MOV AH, 1
+   ; INT 21H
+    
+    ;MOVE INPUT INTO BL
+   ; MOV BL, AL  
+    
+    ;INPUT MESSAGE 2
+  ;  LEA DX, MSG2
+  ;  MOV AH, 09H
+  ;  INT 21H
+    
+    ;INPUT
+   ; MOV AH, 1
+  ;  INT 21H
+    
+    ;MOVE INPUT INTO BH 
+  ;  MOV CL, AL
+     
+    ;CONVERT BACK TO ASCII
+ ;   SUB  BL, 30H
+ ;   SUB CL, 30H 
+ ;   ADD BL, CL 
+  ;  ADD BL, 30H
+    
+    
+     
+    
+    ;OUTPUT MSG
+  ;  MOV AH, 09H 
+   ; LEA DX, MSG3
+  ;  INT 21H  
+    
+    
+    ;OUTPUT VALUE  PRINT
+   ; MOV AH, 2
+   ; MOV DL, BL
+    ;INT 21H   
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+               ;SUBTRACT two numbers
+;.MODEL SMALL
+;.STACK 100H
+
+;.DATA
+  ;  MSG1 DB "ENTER THE FIRST NUMBER: $"
+  ;  MSG2 DB 10, 13, "ENTER THE SECOND NUMBER: $"
+    ;MSG3 DB 10, 13, "THE SUBTRACT IS: $"
+
+;.CODE 
+;MAIN PROC
+   ; MOV AX, @DATA
+   ; MOV DS, AX
+    
+    ;INPUT MESSAGE 1
+  ;  LEA DX, MSG1
+  ;  MOV AH, 09H
+   ; INT 21H
+    
+    ;INPUT
+   ; MOV AH, 1
+   ; INT 21H
+    
+    ;MOVE INPUT INTO BL
+   ; MOV BL, AL  
+    
+    ;INPUT MESSAGE 2
+  ;  LEA DX, MSG2
+  ;  MOV AH, 09H
+  ;  INT 21H
+    
+    ;INPUT
+  ;  MOV AH, 1
+  ;  INT 21H
+  ;  
+    ;MOVE INPUT INTO BH 
+  ;  MOV CL, AL
+     
+ ;   ;CONVERT BACK TO ASCII
+  ;  SUB  BL, 30H
+ ;   SUB CL, 30H 
+ ;   SUB BL, CL 
+  ;  ADD BL, 30H
+    
+    
+     
+    
+    ;OUTPUT MSG
+  ;  MOV AH, 09H 
+  ;  LEA DX, MSG3
+   ; INT 21H  
+    
+    
+    ;OUTPUT VALUE  PRINT
+  ;  MOV AH, 2
+  ;  MOV DL, BL
+  ;  INT 21H
+    
+    
+    
+    
+    
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+ 
+ 
+ 
+               ;MULTIPLY two numbers
+.MODEL SMALL
+.STACK 100H
+
+.DATA
+    MSG1 DB "ENTER THE FIRST NUMBER: $"
+    MSG2 DB 10, 13, "ENTER THE SECOND NUMBER: $"
+    MSG3 DB 10, 13, "THE MULT IS: $"
+
+.CODE 
+MAIN PROC
+    MOV AX, @DATA
+    MOV DS, AX
+    
+    ;INPUT MESSAGE 1
+    LEA DX, MSG1
+    MOV AH, 09H
+    INT 21H
+    
+    ;INPUT
+    MOV AH, 1
+    INT 21H
+    
+    ;MOVE INPUT INTO BL
+    MOV BL, AL  
+    
+    ;INPUT MESSAGE 2
+    LEA DX, MSG2
+    MOV AH, 09H
+    INT 21H
+    
+    ;INPUT
+    MOV AH, 1
+    INT 21H
+    
+    ;MOVE INPUT INTO BH 
+    ;MOV CL, AL
+     
+    ;CONVERT BACK TO ASCII
+    SUB  BL, 30H
+  ; SUB CL, 30H 
+    MUL BL
+  ; SUB BL, 30H
+    
+    
+     
+    
+    ;OUTPUT MSG
+    MOV AH, 09H 
+    LEA DX, MSG3
+    INT 21H  
+    
+    
+    ;OUTPUT VALUE  PRINT
+    MOV AH, 2
+    MOV DX, AX
+    INT 21H
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
         
         

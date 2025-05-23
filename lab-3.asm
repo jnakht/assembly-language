@@ -1,0 +1,61 @@
+.MODEL SMALL
+.STACK 100H
+
+.DATA
+    MSG1 DB "ENTER FIRST NUMBER: $"
+    MSG2 DB 10, 13, "ENTER SECOND NUMBER: $"
+    MSG3 DB 10, 13, "ENTER THIRD NUMBER: $"
+    MSG4 DB 10, 13, "THE LARGEST NUMBER IS: $"
+
+.CODE
+MAIN PROC
+    MOV AX, @DATA
+    MOV DS, AX
+
+    LEA DX, MSG1
+    MOV AH, 09H
+    INT 21H
+
+    MOV AH, 01H
+    INT 21H
+    SUB AL, 30H
+    MOV BL, AL
+
+    LEA DX, MSG2
+    MOV AH, 09H
+    INT 21H
+
+    MOV AH, 01H
+    INT 21H
+    SUB AL, 30H
+    MOV CL, AL
+    CMP CL, BL
+    JLE SKIP1  
+    MOV BL, CL 
+
+SKIP1:
+    LEA DX, MSG3
+    MOV AH, 09H
+    INT 21H
+
+    MOV AH, 01H
+    INT 21H
+    SUB AL, 30H  
+    MOV CL, AL  
+    CMP CL, BL
+    JLE SKIP2  
+    MOV BL, CL 
+
+SKIP2:
+    LEA DX, MSG4
+    MOV AH, 09H
+    INT 21H
+
+    ADD BL, 30H  
+    MOV DL, BL
+    MOV AH, 02H
+    INT 21H
+    MOV AH, 4CH
+    INT 21H
+MAIN ENDP
+END MAIN
