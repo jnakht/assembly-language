@@ -1,0 +1,16 @@
+
+
+
+
+MOV AL, 05h
+MOV BL, 08h
+
+
+CMP AL, BL
+JB SMALLER
+HLT
+
+
+SMALLER:
+MOV CL, AL
+HLT

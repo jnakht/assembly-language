@@ -1,0 +1,14 @@
+
+
+
+
+
+
+MOV CX, 5  
+MOV AL, 0H
+
+LOOP_LEVEL:
+ADD AL, 02H
+
+
+LOOP LOOP_LEVEL
