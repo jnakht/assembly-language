@@ -1,0 +1,12 @@
+
+
+MOV AX, 00H
+MOV BX, 02H   
+MOV CX, 05H
+
+ABC:        
+ADD AX, BX    
+
+
+LOOP ABC
+HLT
