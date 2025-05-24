@@ -1,0 +1,58 @@
+
+
+
+
+
+.MODEL SMALL
+.STACK 100H
+
+.DATA
+    OUTPUTMSG DB 10, 13, "HELLO WORLD$"
+    INPUTMSG DB "ENTER ANY NUMBER(1-9): $"
+    
+.CODE 
+MAIN PROC
+    MOV AX, @DATA
+    MOV DS, AX
+    
+    ;INPUT MSG
+    LEA DX, INPUTMSG
+    MOV AH, 09H
+    INT 21H
+    
+    ;INPUT
+    MOV AH, 1
+    INT 21H
+    ;CONVERT THE ASCII INPUT INTO NUMBER
+    SUB AL, 30H
+    
+    ;SAVE THE INPUT INTO ANOTHER REGISTER
+    MOV BL, AL
+    
+    ;INITIALIZE COUNTER TO 0
+    MOV CL, 0
+    
+    ;DEFINE FOR_LOOP LABEL
+    FOR_LOOP:
+        ;INITIALIZE n
+        CMP CL, BL
+        
+        ;JUMP TO EXIT IF COUNTER IS GREATER OR EQUAL TO n
+        JGE EXIT
+        
+        ;ELSE DO THE LOOPING WORK
+        LEA DX, OUTPUTMSG
+        MOV AH, 09H
+        INT 21H
+        ;INCREMENT THE COUNTER
+        INC CL
+        ;JUMP TO FOOR LOOP, SINCE IT IS MANUAL LOOPING , NOT THE ACTUAL LOOP FUNCTION
+        JMP FOR_LOOP
+        
+        
+        
+     EXIT:
+        MOV AH, 4CH
+        INT 21H
+        
+END MAIN
