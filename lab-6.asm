@@ -5,8 +5,8 @@
 .STACK 100H
 
 .DATA
-    MSG1 DB "How many times do you want to say 'I love you, Mom'? $"
-    MSG2 DB 10,13,"I love you, Mom$"
+    MSG1 DB "Enter a number: $"
+    MSG2 DB 10,13,"Hello World$"
     NEWLINE DB 10,13,"$"
 
 .CODE
