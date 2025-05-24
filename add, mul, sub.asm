@@ -1,0 +1,38 @@
+
+
+
+
+;MOV AX, 1234H
+
+;MOV BX, 5678H
+
+;ADD BX, AX    
+
+
+
+
+
+
+;MOV AL, 05H
+;MOV BL, 05H
+
+;ADD BL, AL    
+
+
+
+;MOV AH, 0CH
+;MOV BL, 08H
+
+;SUB AH, BL   
+
+
+
+;MOV AH, 06H
+;MOV BH, 03H
+
+;SUB BH, AH  
+
+
+;MOV AL, 05H
+
+;MUL 05H
