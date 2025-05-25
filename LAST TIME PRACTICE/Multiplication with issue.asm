@@ -1,79 +1,51 @@
-.model small
-.stack 100h
+org 100h
 
-.data
-    msg1 db 'Enter first digit (0-9): $'
-    msg2 db 0Dh, 0Ah, 'Enter second digit (0-9): $'
-    msg3 db 0Dh, 0Ah, 'Product is: $'
+; Prompt user for first digit
+mov ah, 01h      ; Function to read a character from input
+int 21h          ; Read first digit
+sub al, '0'      ; Convert ASCII to numeric
+mov bl, al       ; Store first digit in BL
 
-.code
-main:
-    mov ax, @data
-    mov ds, ax
+; Prompt user for second digit
+mov ah, 01h
+int 21h          ; Read second digit
+sub al, '0'      ; Convert ASCII to numeric
+mov bh, al       ; Store second digit in BH
 
-    ; Prompt for first digit
-    lea dx, msg1
-    mov ah, 09h
-    int 21h
+; Multiply BL and BH
+mov al, bl
+mul bh           ; AL = AL * BH (result in AX)
 
-    ; Read first character
-    mov ah, 01h
-    int 21h
-    sub al, 30h     ; Convert ASCII to numeric
-    mov bl, al      ; Store in BL
+; Result is in AL (since 1-digit * 1-digit = max 81)
+; Convert to ASCII and display
 
-    ; Prompt for second digit
-    lea dx, msg2
-    mov ah, 09h
-    int 21h
+; Check if result is >= 10 (i.e., 2-digit result)
+cmp al, 10
+jl one_digit_result
 
-    ; Read second character
-    mov ah, 01h
-    int 21h
-    sub al, 30h     ; Convert ASCII to numeric
-    mov bh, al      ; Store in BH
+; For 2-digit result
+mov ah, 0        ; Clear AH
+mov bl, 10
+div bl           ; AL / 10, quotient in AL, remainder in AH
+add al, '0'      ; Convert quotient to ASCII
+mov dl, al
+mov ah, 02h
+int 21h          ; Display first digit (tens)
 
-    ; Multiply the digits
-    xor ax, ax      ; Clear AX before multiplication
-    mov al, bl
-    mul bh          ; AL * BH ? AX
+mov al, ah       ; Remainder
+add al, '0'
+mov dl, al
+mov ah, 02h
+int 21h          ; Display second digit (ones)
 
-    ; Show result message
-    lea dx, msg3
-    mov ah, 09h
-    int 21h
+jmp exit
 
-    ; Display result from AX
-    ; If result < 10, print one digit
-    cmp al, 10
-    jl PRINT_ONE_DIGIT
+one_digit_result:
+add al, '0'      ; Convert to ASCII
+mov dl, al
+mov ah, 02h
+int 21h          ; Display result
 
-    ; Two-digit result: divide by 10
-    mov ah, 0       ; Ensure AH = 0
-    mov bl, 10
-    div bl          ; AL = quotient (tens), AH = remainder (units)
-
-    ; Print tens digit
-    add al, 30h     ; Convert to ASCII
-    mov dl, al
-    mov ah, 02h
-    int 21h
-
-    ; Print units digit
-    mov al, ah      ; Move remainder to AL
-    add al, 30h     ; Convert to ASCII
-    mov dl, al
-    mov ah, 02h
-    int 21h
-
-    jmp EXIT
-
-PRINT_ONE_DIGIT:
-    add al, 30h     ; Convert to ASCII
-    mov dl, al
-    mov ah, 02h
-    int 21h
-
-EXIT:
-    mov ah, 4Ch
-    int 21h
+exit:
+mov ah, 4Ch
+int 21h
