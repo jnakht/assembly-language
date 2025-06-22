@@ -1,0 +1,49 @@
+
+.MODEL SMALL
+.STACK 100H
+.DATA
+    MSG1 DB "ENTER THE 1ST NUMBER: $"
+    MSG2 DB 10, 13, "ENTER THE 2ND NUMBER: $"
+    MSG3 DB 10, 13, "TWO NUMBERS ARE NOT EQUAL$"
+    MSG4 DB 10, 13, "TWO NUMBERS ARE EQUAL$"
+
+.CODE
+MAIN PROC
+    MOV AX, @DATA
+    MOV DS, AX
+    
+    LEA DX, MSG1
+    MOV AH, 09H
+    INT 21H
+    
+    MOV AH, 01H
+    INT 21H
+    MOV BL, AL       
+
+    LEA DX, MSG2
+    MOV AH, 09H
+    INT 21H
+    MOV AH, 01H
+    INT 21H
+    CMP BL, AL
+    JNE NOT_EQUAL
+
+    LEA DX, MSG4
+    MOV AH, 09H
+    INT 21H
+    JMP EXIT
+
+NOT_EQUAL:
+    LEA DX, MSG3
+    MOV AH, 09H
+    INT 21H
+
+EXIT:
+    MOV AH, 4CH       
+    INT 21H
+
+MAIN ENDP
+END MAIN
+
+
+
